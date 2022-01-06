@@ -1,0 +1,54 @@
+﻿<Application x:Class="ManuRecyEco.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ManuRecyEco"
+             xmlns:vm="clr-namespace:ManuRecyEco.ViewModels"
+             xmlns:v="clr-namespace:ManuRecyEco.Views"
+             xmlns:util="clr-namespace:ManuRecyEco.Utility"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="DefaultTheme.xaml"/>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <!-- Liaison des Views aux ViewModels -->
+            <DataTemplate DataType="{x:Type vm:MainMenuViewModel}">
+                <v:MainMenuView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+                <v:LoginView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ProfileViewModel}">
+                <v:ProfileView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:CreateAccountViewModel}">
+                <v:CreateAccountView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:TokenConfirmationViewModel}">
+                <v:TokenConfirmationView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:PasswordResetViewModel}">
+                <v:PasswordResetView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:EmailConfirmationViewModel}">
+                <v:EmailConfirmationView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:PublishBookViewModel}">
+                <v:PublishBookView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:BookListingViewModel}">
+                <v:BookListingView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SearchViewModel}">
+                <v:SearchView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:MyOffersViewModel}">
+                <v:MyOffersView />
+            </DataTemplate>
+
+            <!-- Pour enlever les erreur de binding aux Image avec une source null -->
+            <util:NullImageConverter x:Key="nullImageConverter"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

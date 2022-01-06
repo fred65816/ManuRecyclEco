@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="PageBackground">#FF081C15</Color>
+    <Color x:Key="SearchBackground">#FF409068</Color>
+    <Color x:Key="SearchBorder">#FF50B888</Color>
+    <Color x:Key="BookHolderBackground">#FF50B888</Color>
+    <Color x:Key="StaticLighterBackground">#FF387058</Color>
+    <Color x:Key="StaticBackground">#FF306850</Color>
+    <Color x:Key="StaticDarkerBackground">#FF286048</Color>
+    <Color x:Key="StaticBorder">#FF184030</Color>
+    <Color x:Key="StaticForeground">#FFE0E0E0</Color>
+    <Color x:Key="MouseOverBackground">#FF407860</Color>
+    <Color x:Key="MouseOverBorder">#FF284838</Color>
+    <Color x:Key="PressedBackground">#FF407860</Color>
+    <Color x:Key="PressedBorder">#FF284838</Color>
+    <Color x:Key="DisabledBackground">#FF383838</Color>
+    <Color x:Key="DisabledBorder">#FF202020</Color>
+    <Color x:Key="DisabledForeground">#FFB8B8B8</Color>
+    <Color x:Key="HighlightedBackground">#FF508870</Color>
+    <Color x:Key="HighlightedBorder">#FF385848</Color>
+    <Color x:Key="MessageBackground">#FF409068</Color>
+    <Color x:Key="MessageBorder">#FF50B888</Color>
+    <Color x:Key="MessageForeground">#FFF0F0F0</Color>
+    
+</ResourceDictionary>

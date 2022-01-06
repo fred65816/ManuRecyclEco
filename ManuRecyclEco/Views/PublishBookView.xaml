@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="ManuRecyEco.Views.PublishBookView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManuRecyEco.Views" xmlns:viewmodels="clr-namespace:ManuRecyEco.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:PublishBookViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1400">
+    <Grid Style="{StaticResource PageStyleDefault}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="470" />
+            <ColumnDefinition Width="290" MaxWidth="290" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+               Content="Publication d'offre de vente ou d'échange" Style="{StaticResource HeaderLabelStyleDefault}"/>
+
+        <Border Grid.Row="1" Grid.Column="3" Grid.RowSpan="11" MaxHeight="360" Style="{StaticResource ContentBorderStyleDefault}" >
+            <Image Source="{Binding Path=ImagePath, Converter={StaticResource nullImageConverter}}"
+                   Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Border>
+
+        <Label Grid.Row="1" Grid.Column="1" Content="Institution d'enseignement:"  Style="{StaticResource LabelStyleDefault}" />
+        <Label Grid.Row="1" Grid.Column="2" Content="Université du Québec à Montréal (UQAM)"  Style="{StaticResource ContentLabelStyleDefault}" />
+
+        <Label Grid.Row="2" Grid.Column="1" Content="Programme académique:"  Style="{StaticResource LabelStyleDefault}" />
+        <ComboBox Grid.Row="2" Grid.Column="2" ItemsSource="{Binding AcademicProgramList}"
+                  SelectedItem="{Binding SelectedAcademicProgram, Mode=TwoWay}"
+                  Style="{StaticResource ComboBoxStyleDefault}"
+                  MaxWidth="470"/>
+
+        <Label Grid.Row="3" Grid.Column="1" Content="Cours académique:"  Style="{StaticResource LabelStyleDefault}" />
+        <ComboBox Grid.Row="3" Grid.Column="2" ItemsSource="{Binding AcademicCourseList}"
+                  SelectedItem="{Binding SelectedAcademicCourse, Mode=TwoWay}"
+                  Style="{StaticResource ComboBoxStyleDefault}"
+                  MaxWidth="470"/>
+
+        <Label Grid.Row="4" Grid.Column="1" Content="Livre de référence:"  Style="{StaticResource LabelStyleDefault}" />
+        <ComboBox Grid.Row="4" Grid.Column="2" ItemsSource="{Binding BookList}"
+                  DisplayMemberPath="Title" SelectedItem="{Binding SelectedBook, Mode=TwoWay}"
+                  Style="{StaticResource ComboBoxStyleDefault}"
+                  MaxWidth="470"/>
+
+        <Label Grid.Row="5" Grid.Column="1" Content="Auteur(s):"  Style="{StaticResource LabelStyleDefault}" />
+        <Label Grid.Row="5" Grid.Column="2" Content="{Binding SelectedBook.Author}"  Style="{StaticResource ContentLabelStyleDefault}" />
+        
+        <Label Grid.Row="6" Grid.Column="1" Content="Éditeur, année, nb pages:"  Style="{StaticResource LabelStyleDefault}" />
+        <Label Grid.Row="6" Grid.Column="2" Content="{Binding MiscInfos}" Style="{StaticResource ContentLabelStyleDefault}" />
+
+        <Label Grid.Row="7" Grid.Column="1" Content="ISBN:"  Style="{StaticResource LabelStyleDefault}" />
+        <Label Grid.Row="7" Grid.Column="2" Content="{Binding SelectedBook.ISBN}"  Style="{StaticResource ContentLabelStyleDefault}" />
+
+        <Label Grid.Row="8" Grid.Column="1" Content="Type de transaction:"  Style="{StaticResource LabelStyleDefault}" />
+        <ComboBox Grid.Row="8" Grid.Column="2" ItemsSource="{Binding TransactionList}"
+                  SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}"
+                  Style="{StaticResource ComboBoxStyleDefault}" />
+
+        <Label Grid.Row="9" Grid.Column="1" Content="État du livre:"  Style="{StaticResource LabelStyleDefault}" />
+        <ComboBox Grid.Row="9" Grid.Column="2" ItemsSource="{Binding ConditionList}"
+                  SelectedItem="{Binding SelectedCondition}"
+                  Style="{StaticResource ComboBoxStyleDefault}" />
+
+        <Label Grid.Row="10" Grid.Column="1" Content="Prix d'un exemplaire neuf:"  Style="{StaticResource LabelStyleDefault}" />
+        <Label Grid.Row="10" Grid.Column="2" Content="{Binding StrRefPrice}"  Style="{StaticResource ContentLabelStyleDefault}" />
+        
+        <Label Grid.Row="11" Grid.Column="1" Content="Prix demandé:"  Style="{StaticResource LabelStyleDefault}" />
+        <TextBox Grid.Row="11" Grid.Column="2" MaxLength="7" Text="{Binding StrPrice, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsNotTrading}"  Style="{StaticResource TextBoxStyleDefault}"/>
+
+        <StackPanel Orientation="Horizontal" Margin="0,6,0,0" HorizontalAlignment="Right" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2">
+            <Button Content="Téléverser une image" Margin="0,0,6,0" Click="ImageUpload_OnClick" Style="{StaticResource ButtonStyleDefault}"/>
+            <Button Content="Publier l'offre" Command="{Binding PublishOfferCommand}" Style="{StaticResource ButtonStyleDefault}" />
+        </StackPanel>
+
+        <Label Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+               Content="{Binding MessageContent}" Visibility="{Binding MessageVisibility}" Style="{StaticResource MessageLabelStyleDefault}"/>
+    </Grid>
+</UserControl>

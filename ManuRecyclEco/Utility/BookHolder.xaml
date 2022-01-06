@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="ManuRecyEco.Utility.BookHolder"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManuRecyEco.Utility"
+             mc:Ignorable="d" 
+             d:DesignHeight="320" d:DesignWidth="260">
+    <Grid Background="{StaticResource BookHolder.Background}" Margin="6,6,6,6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="78" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="32" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="130" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="34"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="34"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="1"
+                   Source="{Binding BookImage, TargetNullValue={x:Null}, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                   Margin="0,12,0,0" VerticalAlignment="Stretch"/>
+            <Label Grid.Column="2"
+                   Style="{StaticResource LabelStyleDefault}"
+                   Content="{Binding CopyId, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top"
+                   FontWeight="DemiBold"
+                   Padding="0,0,4,0"
+                   Margin="0,0,0,0"/>
+        </Grid>
+
+
+        <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource BookHolderLabelStyleDefault}" 
+               Margin="4,0,4,0" FontSize="17" HorizontalContentAlignment="Center">
+            <TextBlock Text="{Binding BookTitle, RelativeSource={RelativeSource AncestorType=UserControl}}"
+               TextAlignment="Center" TextWrapping="Wrap" />
+        </Label>
+
+        <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource BookHolderLabelStyleDefault}"
+               Content="{Binding BookCondition, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+               HorizontalContentAlignment="Left" Margin="4,0,0,0" />
+
+        <Label Grid.Column="1" Grid.Row="2" Style="{StaticResource BookHolderLabelStyleDefault}"
+               Content="{Binding BookPrice, RelativeSource={RelativeSource AncestorType=UserControl}}"
+               HorizontalContentAlignment="Right" Margin="0,0,4,0" />
+
+        <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource BookHolderLabelStyleDefault}"
+               Content="{Binding TransactionType, RelativeSource={RelativeSource AncestorType=UserControl}}"
+               HorizontalContentAlignment="Left" Margin="4,0,0,4" />
+
+        <Label Grid.Column="1" Grid.Row="3" Style="{StaticResource BookHolderLabelStyleDefault}"
+               HorizontalContentAlignment="Right" Margin="0,0,4,4">
+            <Hyperlink Foreground="{StaticResource Static.Foreground}"
+                       Command="{Binding DetailPageCommand, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                <TextBlock Text="{Binding HyperlinkMessage, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            </Hyperlink>
+        </Label>
+    </Grid>
+</UserControl>

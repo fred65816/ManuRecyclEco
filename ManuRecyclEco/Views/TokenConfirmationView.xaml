@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="ManuRecyEco.Views.TokenConfirmationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManuRecyEco.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1400">
+    <Grid Style="{StaticResource PageStyleDefault}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="700" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+               Content="Vérification du jeton" Style="{StaticResource HeaderLabelStyleDefault}"/>
+        
+        <Label Grid.Row="1" Grid.Column="1"
+               HorizontalAlignment="Center"
+               Content="Veuillez entrer le jeton envoyé à votre adresse courriel:"
+               Style="{StaticResource LabelStyleDefault}" />
+
+        <TextBox Grid.Row="2" Grid.Column="1" MaxLength="16" Width="388"
+                 HorizontalAlignment="Center"
+                 Text="{Binding Token}"
+                 Style="{StaticResource TextBoxStyleDefault}" />
+
+        <StackPanel Grid.Row="3" Grid.Column="1"
+                    Margin="0,6,0,0"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center" >
+            <Button Content="Quitter"
+                    Command="{Binding ExitCommand}"
+                    Style="{StaticResource ButtonStyleDefault}"/>
+            <Button Content="Renvoyer un courriel"
+                    Margin="6,0,6,0"
+                    IsEnabled="{Binding EmailNotSent}"
+                    Command="{Binding SendEmailCommand}"
+                    Style="{StaticResource ButtonStyleDefault}"/>
+            <Button Content="Valider"
+                    Command="{Binding ValidateCommand}"
+                    Style="{StaticResource ButtonStyleDefault}"/>
+        </StackPanel>
+
+        <Label Grid.Row="4" Grid.Column="1"
+               HorizontalAlignment="Stretch"
+               VerticalAlignment="Top"
+               Margin="0,50,0,0"
+               Content="{Binding MessageContent}"
+               Visibility="{Binding MessageVisibility}"
+               Style="{StaticResource MessageLabelStyleDefault}"/>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,154 @@
+﻿<UserControl x:Class="ManuRecyEco.Views.BookListingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManuRecyEco.Views"
+             xmlns:util="clr-namespace:ManuRecyEco.Utility"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1400">
+    <Grid Style="{StaticResource PageStyleDefault}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="95" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="8" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="1" Margin="4,12,4,6" Padding="0,0,0,0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="{StaticResource Search.Border}" BorderThickness="6">
+            <Grid Background="{StaticResource Search.Background}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Margin="12,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label Content="Cours sélectionné:"  Style="{StaticResource LabelStyleDefault}" />
+                    <ComboBox Width="500" ItemsSource="{Binding CourseList}"
+                      SelectedItem="{Binding SelectedCourse, Mode=TwoWay}" Style="{StaticResource ComboBoxStyleDefault}" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Margin="0,0,12,0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Label Content="Livre sélectionné:"  Style="{StaticResource LabelStyleDefault}" />
+                    <ComboBox Width="500" ItemsSource="{Binding BookList}"
+                      SelectedItem="{Binding SelectedBook, Mode=TwoWay}" Style="{StaticResource ComboBoxStyleDefault}" />
+
+                </StackPanel>
+                <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal" 
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,12,0">
+                    <Label Content="{Binding NbResult}"
+                    HorizontalAlignment="Stretch"
+                    Padding="0,0,0,3"
+                    Margin="0,0,0,0"
+                    Style="{StaticResource LabelStyleDefault}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Button Content="Précédent" MinWidth="120" Margin="0,6,6,0" 
+                      Command="{Binding PreviousPageCommand}" IsEnabled="{Binding PreviousPageEnabled}" Style="{DynamicResource ButtonStyleDefault}" />
+            <Button Content="Suivant" MinWidth="120" Margin="6,6,0,0" 
+                      Command="{Binding NextPageCommand}" IsEnabled="{Binding NextPageEnabled}" Style="{DynamicResource ButtonStyleDefault}" />
+        </StackPanel>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <util:BookHolder x:Name="bh1" Grid.Column="0" Grid.Row="0" 
+                             BookImage="{Binding BookImage1}" BookTitle="{Binding BookTitle1}" 
+                             BookCondition="{Binding BookCondition1}" BookPrice="{Binding BookPrice1}" 
+                             TransactionType="{Binding TransactionType1}" HyperlinkMessage="{Binding HyperLinkMessage1}"
+                             DetailPageCommand="{Binding DetailPageCommand1}"
+                             Visibility="{Binding Visibility1}"
+                             CopyId="{Binding CopyId1}"/>
+
+            <util:BookHolder x:Name="bh2" Grid.Column="1" Grid.Row="0" 
+                             BookImage="{Binding BookImage2}" BookTitle="{Binding BookTitle2}" 
+                             BookCondition="{Binding BookCondition2}" BookPrice="{Binding BookPrice2}" 
+                             TransactionType="{Binding TransactionType2}" HyperlinkMessage="{Binding HyperLinkMessage2}"
+                             DetailPageCommand="{Binding DetailPageCommand2}"
+                             Visibility="{Binding Visibility2}"
+                             CopyId="{Binding CopyId2}"/>
+
+            <util:BookHolder x:Name="bh3" Grid.Column="2" Grid.Row="0" 
+                             BookImage="{Binding BookImage3}" BookTitle="{Binding BookTitle3}" 
+                             BookCondition="{Binding BookCondition3}" BookPrice="{Binding BookPrice3}" 
+                             TransactionType="{Binding TransactionType3}" HyperlinkMessage="{Binding HyperLinkMessage3}"
+                             DetailPageCommand="{Binding DetailPageCommand3}"
+                             Visibility="{Binding Visibility3}"
+                             CopyId="{Binding CopyId3}"/>
+
+            <util:BookHolder x:Name="bh4" Grid.Column="3" Grid.Row="0" 
+                             BookImage="{Binding BookImage4}" BookTitle="{Binding BookTitle4}" 
+                             BookCondition="{Binding BookCondition4}" BookPrice="{Binding BookPrice4}" 
+                             TransactionType="{Binding TransactionType4}" HyperlinkMessage="{Binding HyperLinkMessage4}"
+                             DetailPageCommand="{Binding DetailPageCommand4}"
+                             Visibility="{Binding Visibility4}"
+                             CopyId="{Binding CopyId4}"/>
+
+            <util:BookHolder x:Name="bh5" Grid.Column="4" Grid.Row="0" 
+                             BookImage="{Binding BookImage5}" BookTitle="{Binding BookTitle5}" 
+                             BookCondition="{Binding BookCondition5}" BookPrice="{Binding BookPrice5}" 
+                             TransactionType="{Binding TransactionType5}" HyperlinkMessage="{Binding HyperLinkMessage5}"
+                             DetailPageCommand="{Binding DetailPageCommand5}"
+                             Visibility="{Binding Visibility5}"
+                             CopyId="{Binding CopyId5}"/>
+
+            <util:BookHolder x:Name="bh6" Grid.Column="0" Grid.Row="1" 
+                             BookImage="{Binding BookImage6}" BookTitle="{Binding BookTitle6}" 
+                             BookCondition="{Binding BookCondition6}" BookPrice="{Binding BookPrice6}" 
+                             TransactionType="{Binding TransactionType6}" HyperlinkMessage="{Binding HyperLinkMessage6}"
+                             DetailPageCommand="{Binding DetailPageCommand6}"
+                             Visibility="{Binding Visibility6}"
+                             CopyId="{Binding CopyId6}"/>
+
+            <util:BookHolder x:Name="bh7" Grid.Column="1" Grid.Row="1" 
+                             BookImage="{Binding BookImage7}" BookTitle="{Binding BookTitle7}" 
+                             BookCondition="{Binding BookCondition7}" BookPrice="{Binding BookPrice7}" 
+                             TransactionType="{Binding TransactionType7}" HyperlinkMessage="{Binding HyperLinkMessage7}"
+                             DetailPageCommand="{Binding DetailPageCommand7}"
+                             Visibility="{Binding Visibility7}"
+                             CopyId="{Binding CopyId7}"/>
+
+            <util:BookHolder x:Name="bh8" Grid.Column="2" Grid.Row="1" 
+                             BookImage="{Binding BookImage8}" BookTitle="{Binding BookTitle8}" 
+                             BookCondition="{Binding BookCondition8}" BookPrice="{Binding BookPrice8}" 
+                             TransactionType="{Binding TransactionType8}" HyperlinkMessage="{Binding HyperLinkMessage8}"
+                             DetailPageCommand="{Binding DetailPageCommand8}"
+                             Visibility="{Binding Visibility8}"
+                             CopyId="{Binding CopyId8}"/>
+
+            <util:BookHolder x:Name="bh9" Grid.Column="3" Grid.Row="1" 
+                             BookImage="{Binding BookImage9}" BookTitle="{Binding BookTitle9}" 
+                             BookCondition="{Binding BookCondition9}" BookPrice="{Binding BookPrice9}" 
+                             TransactionType="{Binding TransactionType9}" HyperlinkMessage="{Binding HyperLinkMessage9}"
+                             DetailPageCommand="{Binding DetailPageCommand9}"
+                             Visibility="{Binding Visibility9}"
+                             CopyId="{Binding CopyId9}"/>
+
+            <util:BookHolder x:Name="bh10" Grid.Column="4" Grid.Row="1" 
+                             BookImage="{Binding BookImage10}" BookTitle="{Binding BookTitle10}" 
+                             BookCondition="{Binding BookCondition10}" BookPrice="{Binding BookPrice10}" 
+                             TransactionType="{Binding TransactionType10}" HyperlinkMessage="{Binding HyperLinkMessage10}"
+                             DetailPageCommand="{Binding DetailPageCommand10}"
+                             Visibility="{Binding Visibility10}"
+                             CopyId="{Binding CopyId10}"/>
+        </Grid>
+    </Grid>
+</UserControl>

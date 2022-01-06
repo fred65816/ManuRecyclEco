@@ -1,0 +1,244 @@
+﻿<UserControl x:Class="ManuRecyEco.Views.ProfileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManuRecyEco.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1400">
+    <Grid Style="{StaticResource PageStyleDefault}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="500" />
+            <ColumnDefinition Width="28" />
+            <ColumnDefinition Width="500" />
+            <ColumnDefinition Width="28" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Header -->
+        <DockPanel VerticalAlignment="Bottom" LastChildFill="True" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
+            <Button Click="ImageUpload_OnClick" 
+                    Background="{DynamicResource  Static.Background}"
+                    BorderThickness="4,4,4,4"
+                    Width="66" Height="66"
+                    MaxWidth="66" MaxHeight="66"
+                    Padding="0,0,0,0"
+                    Margin="8,0,0,1"
+                    BorderBrush="{DynamicResource Static.Border}"
+                    Style="{StaticResource ButtonImgUploadDefault}">
+                <Image Source="{Binding ImageSource }"
+                   DockPanel.Dock="Left"
+                   Width="53" Height="53"
+                   MaxWidth="53" MaxHeight="53"
+                   HorizontalAlignment="Left"
+                   Stretch="Fill"
+                   VerticalAlignment="Top" />            
+            </Button>
+
+            <Label
+               DockPanel.Dock="Right"
+               HorizontalAlignment="Stretch" 
+               HorizontalContentAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="0,0,8,0"
+               BorderThickness="0,4,4,4"
+               Content="Profil"
+               Style="{StaticResource HeaderLabelStyleDefault}"/>
+        </DockPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Margin="0,8,8,0">
+            <Label  Content="Style:" Style="{StaticResource ProfileLabelStyleDefault}" />
+            <ComboBox Width="180" ItemsSource="{Binding StyleList}"
+                      SelectedItem="{Binding SelectedStyle, Mode=TwoWay}"
+                      Style="{StaticResource ProfileComboBoxStyleDefault}"
+                      SelectionChanged="Change_Style"/>
+        </StackPanel>
+        
+        <!-- Première colonne (à gauche) -->
+
+        <!-- Username -->
+        <StackPanel Grid.Row="2" Grid.Column="1" Style="{StaticResource StackPanelProfileStyle}">
+            <Label  Content="Nom d'utilisateur:" Style="{StaticResource ProfileLabelStyleDefault}" />
+            <Label  Content="{Binding CurrentUser.Username}" Style="{StaticResource ProfileContentLabelStyleDefault}" />
+        </StackPanel>
+
+        <!-- Email -->
+        <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource StackPanelProfileStyle}">
+            <Label Content="Courriel:" Style="{StaticResource ProfileLabelStyleDefault}" />
+            <TextBox Text="{Binding Email}" MaxLength="50" Style="{StaticResource ProfileTextBoxStyleDefault}" />
+        </StackPanel>
+        <Image Grid.Row="3" Grid.Column="2" 
+               Source="../edit_icon_2.png"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Bottom"
+               Margin="0,0,0,10"/>
+
+        <!-- Programme inscrit -->
+        <StackPanel Grid.Row="4" Grid.Column="1" Style="{StaticResource StackPanelProfileStyle}">
+            <Label Content="Programme inscrit:"  Style="{StaticResource ProfileLabelStyleDefault}" />
+            <ComboBox ItemsSource="{Binding UserAcademicProgramList}"
+                  SelectedItem="{Binding SelectedUserAcademicProgram, Mode=TwoWay}"
+                  Style="{StaticResource ProfileComboBoxStyleDefault}"/>
+        </StackPanel>
+
+        <!-- Cours ajoutés -->
+        <StackPanel Grid.Row="5" Grid.Column="1" Style="{StaticResource StackPanelProfileStyle}">
+            <!-- ComboBox programme -->
+            <Label Content="Filtre programme pour cours:"  Style="{StaticResource ProfileLabelStyleDefault}" />
+            <ComboBox ItemsSource="{Binding AcademicProgramList}"
+                  SelectedItem="{Binding SelectedAcademicProgram, Mode=TwoWay}"
+                  Style="{StaticResource ProfileComboBoxStyleDefault}"/>
+
+            <!-- ComboBox cours -->
+            <Label Content="Cours à ajouter:"  Style="{StaticResource ProfileLabelStyleDefault}" />
+            <ComboBox ItemsSource="{Binding AcademicCourseList}"
+                  SelectedItem="{Binding SelectedAcademicCourse, Mode=TwoWay}"
+                  Style="{StaticResource ProfileComboBoxStyleDefault}"/>
+
+            <!-- ListBox cours ajoutés -->
+            <Label Content="Cours ajoutés:"
+               VerticalAlignment="Top"
+               Style="{StaticResource ProfileLabelStyleDefault}" />
+            <ListBox SelectionMode="Single"
+                 ItemsSource="{Binding ListBoxCourseList}"
+                 SelectedItem="{Binding SelectedListBoxCourse, Mode=TwoWay}"
+                 Style="{StaticResource ListBoxStyleDefault}"
+                 Height="199" MaxHeight="199"
+                 Margin="0,2,0,0"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Acronym}"/>
+                            <TextBlock Text=" " />
+                            <TextBlock Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!-- Bouton supprimer cours -->
+            <StackPanel Orientation="Horizontal" Margin="0,6,0,0" HorizontalAlignment="Right">
+                <Button Content="Supprimer le cours sélectionné" 
+                Command="{Binding DeleteSelectedCourse}" 
+                Style="{StaticResource ButtonStyleDefault}"
+                IsEnabled="{Binding DeleteButtonEnabled}"/>
+            </StackPanel>
+        </StackPanel>
+        
+        <!-- Deuxième colonne (à droite) -->
+
+        <!-- Prénom -->
+        <StackPanel Grid.Row="2" Grid.Column="3" Style="{StaticResource StackPanelProfileStyle}">
+            <Label Content="Prénom:" Style="{StaticResource ProfileLabelStyleDefault}" />
+            <TextBox Text="{Binding CurrentUser.FirstName}" Style="{StaticResource ProfileTextBoxStyleDefault}" />
+        </StackPanel>
+        <Image Grid.Row="2" Grid.Column="4" 
+               Source="../edit_icon_2.png"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Bottom"
+               Margin="0,0,0,10"/>
+
+        <!-- Nom -->
+        <StackPanel Grid.Row="3" Grid.Column="3" Style="{StaticResource StackPanelProfileStyle}">
+            <Label Content="Nom de famille:" Style="{StaticResource ProfileLabelStyleDefault}" />
+            <TextBox Text="{Binding CurrentUser.LastName}" Style="{StaticResource ProfileTextBoxStyleDefault}" />
+        </StackPanel>
+        <Image Grid.Row="3" Grid.Column="4" 
+               Source="../edit_icon_2.png"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Bottom"
+               Margin="0,0,0,10"/>
+
+        <!-- Ville -->
+        <StackPanel Grid.Row="4" Grid.Column="3" Style="{StaticResource StackPanelProfileStyle}">
+            <Label Content="Ville:" Style="{StaticResource ProfileLabelStyleDefault}" />
+            <ComboBox ItemsSource="{Binding CityList}"
+                      SelectedItem="{Binding SelectedCity, Mode=TwoWay}"
+                      Style="{StaticResource ProfileComboBoxStyleDefault}" />
+        </StackPanel>
+
+        <!-- Livres ajoutés -->
+        <StackPanel Grid.Row="5" Grid.Column="3" Style="{StaticResource StackPanelProfileStyle}">
+            <!-- ComboBox programme -->
+            <Label Content="Filtre programme pour livres:"  Style="{StaticResource ProfileLabelStyleDefault}" />
+            <ComboBox ItemsSource="{Binding AcademicProgramList}"
+                  SelectedItem="{Binding BookSelectedAcademicProgram, Mode=TwoWay}"
+                  Style="{StaticResource ProfileComboBoxStyleDefault}"/>
+
+            <!-- ComboBox cours -->
+            <Label Content="Filtre cours pour livre:"  Style="{StaticResource ProfileLabelStyleDefault}" />
+            <ComboBox ItemsSource="{Binding BookAcademicCourseList}"
+                  SelectedItem="{Binding BookSelectedAcademicCourse, Mode=TwoWay}"
+                  Style="{StaticResource ProfileComboBoxStyleDefault}"/>
+
+            <!-- ComboBox livres -->
+            <Label Content="Livre à ajouter:"  Style="{StaticResource ProfileLabelStyleDefault}" />
+            <ComboBox ItemsSource="{Binding BookList}"
+                  SelectedItem="{Binding SelectedBook, Mode=TwoWay}"
+                  Style="{StaticResource ProfileComboBoxStyleDefault}"/>
+
+            <!-- ListBox livres -->
+            <Label Content="Livres recherchés:"
+               VerticalAlignment="Top"
+               Style="{StaticResource ProfileLabelStyleDefault}" />
+            <ListBox SelectionMode="Single"
+                 ItemsSource="{Binding ListBoxBookList}"
+                 SelectedItem="{Binding SelectedListBoxBook, Mode=TwoWay}"
+                 Style="{StaticResource ListBoxStyleDefault}"
+                 Height="141" MaxHeight="141"
+                 Margin="0,2,0,0"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Title}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!-- Bouton supprimer livre -->
+            <StackPanel Orientation="Horizontal" Margin="0,6,0,0" HorizontalAlignment="Right">
+                <Button Content="Supprimer le livre sélectionné" 
+                Command="{Binding DeleteSelectedBook}" 
+                Style="{StaticResource ButtonStyleDefault}"
+                IsEnabled="{Binding DeleteBookButtonEnabled}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Footer (bouton enregistrer) -->
+        <Button Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3"
+                Content="Enregistrer les changements" 
+                Command="{Binding ConfirmProfilUpdate}" 
+                Style="{StaticResource ButtonStyleDefault}"
+                HorizontalAlignment="Center"
+                Margin="0,0,0,0"
+                VerticalAlignment="Center" />
+
+        <!-- Footer (message) -->
+        <Label Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3"
+               HorizontalAlignment="Stretch"
+               VerticalAlignment="Top"
+               Margin="0,0,0,0"
+               Content="{Binding MessageContent}"
+               Visibility="{Binding MessageVisibility}"
+               Style="{StaticResource MessageLabelStyleDefault}"/>
+        
+    </Grid>
+</UserControl>

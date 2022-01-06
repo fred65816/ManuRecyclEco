@@ -1,0 +1,22 @@
+﻿<Window x:Class="ManuRecyEco.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManuRecyEco"
+        xmlns:vm="clr-namespace:ManuRecyEco.ViewModels"
+        mc:Ignorable="d"
+        Title="ManuRecyclEco" Height="1000" Width="1400">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!-- le contenu de la fenêtre principale est ce que l'on set  (un ViewModel qui est lié à une view) dans la propriété CurrentView -->
+        <!-- Les Views sont liées aux ViewModels dans le fichier App.xaml -->
+        <ContentControl Grid.Column="0" Content="{Binding CurrentView}"/>
+    </Grid>
+
+</Window>

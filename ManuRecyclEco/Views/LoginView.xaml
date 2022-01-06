@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="ManuRecyEco.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManuRecyEco.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1400">
+    <Grid Style="{StaticResource PageStyleDefault}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+               Content="ManuRecyclEco" Style="{StaticResource HeaderLabelStyleDefault}"/>
+        
+        <Label Grid.Row="1" Grid.Column="1" Content="Nom d'utilisateur/Courriel:" Style="{StaticResource LabelStyleDefault}"/>
+        <TextBox x:Name="keyBox" Grid.Row="1" Grid.Column="2" Text="{Binding LoginKey}" Style="{StaticResource TextBoxStyleDefault}"/>
+
+        <Label Grid.Row="2" Grid.Column="1" Content="Mot de passe:" Style="{StaticResource LabelStyleDefault}"/>
+        <PasswordBox Grid.Row="2" Grid.Column="2" MaxLength="100" PasswordChanged="PasswordBox_PasswordChanged" Style="{StaticResource PasswordBoxStyleDefault}"/>
+
+        <Label Grid.Row="3" Grid.Column="2" BorderThickness="0" Style="{StaticResource LabelStyleDefault}">
+            <Hyperlink Foreground="{StaticResource Static.Foreground}" Command="{Binding ForgotPasswordCommand}">
+                Mot de passe oublié?
+            </Hyperlink>
+        </Label>
+
+        <Button Grid.Row="4" Grid.Column="2" Margin="0,6,0,0" IsEnabled="{Binding ElementName=keyBox, Path=Text.Length}" 
+                Content="Authentification" Style="{StaticResource ButtonStyleDefault}" Command="{Binding AuthentifyCommand}"/>
+
+        <Button Grid.Row="5" Grid.Column="2" Margin="0,6,0,0" Content="Créer un compte" Command="{Binding CreateAccountCommand}" 
+                Style="{StaticResource ButtonStyleDefault}"/>
+
+        <Button Grid.Row="6" Grid.Column="2" Margin="0,6,0,0" Content="Visualiser les offres" Command="{Binding GoToSearchCommand}" 
+                Style="{StaticResource ButtonStyleDefault}"/>
+
+        <Label Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+               Content="{Binding MessageContent}" Visibility="{Binding MessageVisibility}" Style="{StaticResource MessageLabelStyleDefault}"/>
+    </Grid>
+</UserControl>
